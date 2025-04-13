@@ -2,7 +2,7 @@
 
 set -e
 
-BP_NAME=${1:-"heroku/nodejs"}
+BP_NAME=${1:-"heroku/nodejs-stripped"}
 curVersion=$(heroku buildpacks:versions "$BP_NAME" | awk 'FNR == 3 { print $1 }')
 newVersion="v$((curVersion + 1))"
 
@@ -22,6 +22,7 @@ echo "Tagging commit $originMain with latest... "
 git tag -f latest "${originMain:?}"
 git push -f origin refs/tags/latest
 
-heroku buildpacks:publish "$BP_NAME" "$newVersion"
+# this command does not exist anymore, seemingly just need to push the tag (or manually publish via https://addons-next.heroku.com/buildpacks)
+# heroku buildpacks:publish "$BP_NAME" "$newVersion"
 
 echo "Done."

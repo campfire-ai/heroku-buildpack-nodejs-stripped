@@ -376,6 +376,7 @@ meta_set "build-step" "restore-cache"
 restore_cache | output "$LOG_FILE"
 
 build_dependencies() {
+  echo "skipping build_dependencies"
   # note(campfireai): not needed for agent builds, already installed
   # local cache_status start
 
@@ -429,6 +430,7 @@ cache_build() {
 }
 
 prune_devdependencies() {
+  echo "skipping prune_devdependencies"
   # note(campfireai): not needed for agent builds, no dev dependencies
   # if $YARN || $YARN_2; then
   #   yarn_prune_devdependencies "$BUILD_DIR" "$YARN_CACHE_FOLDER" "$BP_DIR"
